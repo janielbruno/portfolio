@@ -167,19 +167,39 @@
 
   footer { text-align:center; padding:2rem; font-size:0.78rem; color:var(--muted); border-top:1px solid rgba(14,14,18,0.07); }
 
-  @media(max-width:900px){
-    nav{padding:1rem 1.5rem}
-    #hero{grid-template-columns:1fr;padding:5.5rem 1.5rem 4rem;text-align:center}
-    .hero-blob{width:350px;height:350px;right:-80px;top:auto;bottom:-80px;transform:none}
-    .hero-right{display:none}
-    .hero-sub{max-width:100%}
-    .hero-ctas{justify-content:center}
-    section{padding:4rem 1.5rem}
-    #sobre,#projetos{margin:0 0.8rem;border-radius:24px}
-    .sobre-grid,.skills-wrap{grid-template-columns:1fr}
-    .dif-grid{grid-template-columns:1fr 1fr}
-    .soft-group{grid-column:span 1}
-    .exp{grid-template-columns:1fr;gap:0.4rem}
+  /* --- AJUSTES DE RESPONSIVIDADE --- */
+  @media (max-width: 900px) {
+    nav { padding: 1rem; flex-direction: column; gap: 10px; height: auto; position: relative; }
+    .nav-links { gap: 1rem; flex-wrap: wrap; justify-content: center; padding: 0; }
+    .nav-links a { font-size: 0.75rem; }
+
+    #hero { grid-template-columns: 1fr; padding: 3rem 1.5rem; text-align: center; min-height: auto; }
+    .hero-left { order: 1; }
+    .hero-right { display: none; } /* Esconde o card flutuante no mobile para focar no CTA */
+    h1 { font-size: 2.5rem; line-height: 1.1; }
+    .hero-sub { margin: 0 auto 2rem auto; }
+    .hero-ctas { justify-content: center; }
+
+    section { padding: 4rem 1.5rem; }
+    .sobre-grid, .skills-wrap, .timeline { grid-template-columns: 1fr; gap: 2rem; }
+    
+    /* Ajuste dos diferenciais para não esmagar o texto */
+    .dif-grid { grid-template-columns: 1fr; }
+    
+    /* Correção das colunas de Redação/Conteúdo */
+    .grid-redacao { grid-template-columns: 1fr 1fr !important; }
+    .grid-cards { grid-template-columns: 1fr !important; }
+
+    .exp { grid-template-columns: 1fr; gap: 10px; }
+    .contato-box { padding: 3rem 1.5rem; }
+    .c-links { flex-direction: column; align-items: stretch; }
+  }
+
+  /* Ajuste extra para celulares muito pequenos (iPhone SE, etc) */
+  @media (max-width: 480px) {
+    .grid-redacao { grid-template-columns: 1fr !important; }
+    h1 { font-size: 2.2rem; }
+    .nav-links { display: none; } /* Opcional: esconder menu longo e focar no CTA do Hero */
   }
 </style>
 </head>
@@ -342,7 +362,7 @@
   <div class="sec-label">Portfólio de Redação</div>
   <h2>Conteúdo que <span>vende e ranqueia</span></h2>
 
-  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:2.5rem;">
+  <div class="grid-redacao" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:2.5rem;">
     <div style="background:#fff;border:1px solid #e8e4dc;border-radius:14px;padding:1.3rem;text-align:center;">
       <div style="font-size:1.6rem;margin-bottom:0.6rem;">📝</div>
       <div style="font-family:'Syne',sans-serif;font-weight:600;font-size:0.93rem;color:#0f0f0f;margin-bottom:0.3rem;">Artigos SEO</div>
@@ -365,7 +385,7 @@
     </div>
   </div>
 
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
+  <div class="grid-cards" style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;">
 
     <div style="background:#fff;border:1px solid #e8e4dc;border-radius:20px;padding:1.8rem;position:relative;overflow:hidden;transition:transform 0.2s,box-shadow 0.2s;" onmouseenter="this.style.transform='translateY(-3px)';this.style.boxShadow='0 12px 40px rgba(0,0,0,0.09)'" onmouseleave="this.style.transform='';this.style.boxShadow=''">
       <div style="position:absolute;top:0;left:0;right:0;height:3px;background:#C8F135;"></div>
