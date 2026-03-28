@@ -8,7 +8,8 @@
     <link rel="canonical" href="https://janielbruno.github.io/portfolio/">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -20,6 +21,7 @@
 
         html { scroll-behavior: smooth; }
 
+        /* Fonte base do site alterada para Inter */
         body { 
             font-family: 'Inter', sans-serif; 
             background: var(--paper); 
@@ -28,12 +30,12 @@
             -webkit-font-smoothing: antialiased;
         }
 
+        /* Aplicação da Playfair Display em Títulos e Elementos de Destaque */
         h1, h2, h3, .nav-logo, .btn-p, .btn-o, .hc-name, .stat-n, .fact-title, .dif-title, .exp-role, .exp-co { 
             font-family: 'Playfair Display', serif; 
             letter-spacing: -0.01em; 
         }
 
-        /* --- NAV --- */
         nav {
             position: fixed; top: 0; left: 0; right: 0; z-index: 100;
             display: flex; align-items: center; justify-content: space-between;
@@ -41,191 +43,162 @@
             background: rgba(247,244,238,0.88); backdrop-filter: blur(14px);
             border-bottom: 1px solid rgba(14,14,18,0.07);
         }
+        
         .nav-logo { font-weight: 800; font-size: 1.3rem; color: var(--ink); text-decoration: none; }
         .nav-logo span { color: var(--coral); }
+        
         .nav-links { display: flex; gap: 2.2rem; list-style: none; }
-        .nav-links a { font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 500; text-decoration: none; color: var(--muted); transition: color 0.2s; }
+        .nav-links a { font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 500; letter-spacing: 0.04em; text-decoration: none; color: var(--muted); transition: color 0.2s; }
         .nav-links a:hover { color: var(--ink); }
 
-        /* --- NOVO HERO EDITORIAL --- */
         #hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 0 4rem;
-            padding-top: 100px;
-            position: relative;
-            background-color: var(--paper);
-            overflow: hidden;
+            min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr;
+            padding: 0 4rem; padding-top: 80px; position: relative; overflow: hidden; align-items: center;
         }
+        .hero-blob { position: absolute; right: -100px; top: 50%; transform: translateY(-50%); width: 640px; height: 640px; background: var(--lime); border-radius: 50%; z-index: 0; }
+        .dot { position: absolute; border-radius: 50%; animation: float 4s ease-in-out infinite; }
+        .dot1 { left: 8%; top: 22%; width: 13px; height: 13px; background: var(--coral); }
+        .dot2 { left: 33%; bottom: 22%; width: 8px; height: 8px; background: var(--violet); animation-duration: 5.5s; animation-direction: reverse; }
+        .dot3 { left: 18%; bottom: 30%; width: 5px; height: 5px; background: var(--sky); animation-duration: 3.5s; }
+        
+        @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-14px)} }
 
-        .hero-bg-text {
-            position: absolute;
-            font-family: 'Playfair Display', serif;
-            font-size: 22vw;
-            font-weight: 900;
-            color: rgba(14, 14, 18, 0.03);
-            white-space: nowrap;
-            top: 15%;
-            left: -5%;
-            z-index: 0;
-            pointer-events: none;
-            user-select: none;
-        }
-
-        .hero-container {
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
-            gap: 4rem;
-            align-items: center;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-left h1 {
-            font-size: clamp(3.2rem, 5.5vw, 6rem);
-            line-height: 0.95;
-            margin-bottom: 2rem;
-            color: var(--ink);
-            font-weight: 900;
-        }
-
-        .hero-left h1 span.highlight {
-            color: var(--coral);
-            font-style: italic;
-            display: block;
-        }
-
+        .hero-left { position: relative; z-index: 1; }
         .hero-tag {
             display: inline-flex; align-items: center; gap: 8px;
             background: var(--ink); color: var(--lime);
-            font-family: 'Inter', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
-            padding: 8px 16px; border-radius: 100px; margin-bottom: 2rem;
+            font-family: 'Inter', sans-serif; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+            padding: 6px 14px; border-radius: 100px; margin-bottom: 1.8rem;
         }
-
-        .hero-sub-text {
-            font-family: 'Inter', sans-serif;
-            font-size: 1.15rem;
-            line-height: 1.7;
-            color: var(--muted);
-            max-width: 520px;
-            margin-bottom: 3rem;
-            border-left: 4px solid var(--lime);
-            padding-left: 1.5rem;
-        }
-
-        .hero-ctas { display: flex; gap: 1.2rem; flex-wrap: wrap; }
-        .btn-p { background: var(--ink); color: var(--lime); padding: 18px 36px; border-radius: 100px; font-weight: 700; font-size: 0.95rem; text-decoration: none; transition: all 0.3s; display: inline-flex; align-items: center; gap: 10px; }
-        .btn-p:hover { transform: translateY(-3px); background: var(--coral); color: #fff; box-shadow: 0 10px 20px rgba(255, 92, 58, 0.2); }
-        .btn-o { background: transparent; color: var(--ink); border: 2px solid var(--ink); padding: 18px 36px; border-radius: 100px; font-weight: 700; font-size: 0.95rem; text-decoration: none; transition: all 0.3s; display: inline-block; }
-        .btn-o:hover { background: var(--ink); color: var(--lime); transform: translateY(-3px); }
-
-        /* Estilo da Foto + Stats */
-        .hero-right { position: relative; display: flex; justify-content: flex-end; }
-        .photo-wrapper { position: relative; width: 100%; max-width: 480px; }
+        .hero-tag::before { content:''; width:7px; height:7px; background:var(--lime); border-radius:50%; animation: pulse 2s infinite; }
         
-        .main-photo {
-            width: 100%;
-            height: auto;
-            border-radius: 30px;
-            filter: grayscale(100%);
-            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.1);
-            background: #e0e0e0; /* Placeholder caso a foto demore a carregar */
-        }
-        .photo-wrapper:hover .main-photo { filter: grayscale(0%); transform: scale(1.02); }
+        @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.35} }
+        
+        h1 { font-size: clamp(2.8rem, 4.8vw, 4.5rem); font-weight: 800; line-height: 1.1; margin-bottom: 1.4rem; }
+        h1 em { font-style: italic; color: var(--coral); font-weight: 700; }
+        
+        .hero-sub { font-family: 'Inter', sans-serif; font-size: 1.05rem; color: var(--muted); line-height: 1.75; max-width: 440px; margin-bottom: 2.5rem; font-weight: 300; }
+        
+        .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .btn-p { background: var(--ink); color: var(--lime); padding: 16px 32px; border-radius: 100px; font-weight: 700; font-size: 0.9rem; text-decoration: none; transition: transform 0.2s, background 0.2s; display: inline-block; }
+        .btn-p:hover { transform: translateY(-2px); background: var(--coral); color: #fff; }
+        .btn-o { background: transparent; color: var(--ink); border: 1.5px solid var(--ink); padding: 16px 32px; border-radius: 100px; font-weight: 700; font-size: 0.9rem; text-decoration: none; transition: transform 0.2s, background 0.2s, color 0.2s; display: inline-block; }
+        .btn-o:hover { background: var(--ink); color: var(--lime); transform: translateY(-2px); }
 
-        .floating-stat {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(15px);
-            padding: 1.8rem;
-            border-radius: 24px;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.12);
-            border: 1px solid rgba(255,255,255,0.4);
-            z-index: 3;
-            transition: transform 0.3s ease;
-        }
-        .floating-stat:hover { transform: translateY(-5px); }
+        .hero-right { position: relative; z-index: 1; display: flex; align-items: center; justify-content: center; }
+        .hero-card { background: var(--card); border-radius: 28px; padding: 2rem; width: 320px; box-shadow: 0 24px 80px rgba(14,14,18,0.12); transform: rotate(2deg); transition: transform 0.3s; }
+        .hero-card:hover { transform: rotate(0deg); }
+        .hc-top { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
+        .avatar { width: 56px; height: 56px; border-radius: 50%; background: linear-gradient(135deg, var(--coral), var(--violet)); display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-weight: 800; font-size: 1.2rem; color: #fff; flex-shrink: 0; }
+        .hc-name { font-weight: 700; font-size: 1.1rem; line-height: 1.2; }
+        .hc-role { font-family: 'Inter', sans-serif; font-size: 0.76rem; color: var(--muted); margin-top: 3px; }
+        
+        .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .stat { background: var(--paper); border-radius: 14px; padding: 14px; }
+        .stat.lime { background: var(--lime); }
+        .stat.violet { background: var(--violet); }
+        .stat-n { font-weight: 800; font-size: 1.6rem; line-height: 1; }
+        .stat.violet .stat-n { color: #fff; font-size: 1.05rem; }
+        .stat-l { font-family: 'Inter', sans-serif; font-size: 0.7rem; color: var(--muted); margin-top: 4px; }
+        .stat.violet .stat-l { color: rgba(255,255,255,0.65); }
 
-        .stat-impressions {
-            top: 10%;
-            left: -15%;
-            background: var(--lime);
-            color: var(--ink);
-            text-align: center;
-        }
-        .stat-impressions .number { font-family: 'Playfair Display', serif; font-size: 2.8rem; font-weight: 900; display: block; line-height: 1; }
-        .stat-impressions .label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
-
-        .stat-experience {
-            bottom: 10%;
-            right: -5%;
-            display: flex;
-            align-items: center;
-            gap: 1.2rem;
-            min-width: 220px;
-        }
-
-        /* --- SEÇÕES RESTANTES (ESTILOS MANTIDOS E REFINADOS) --- */
-        section { padding: 8rem 4rem; }
-        .sec-label { display: inline-flex; align-items: center; gap: 10px; font-family: 'Inter', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.2rem; }
+        section { padding: 6rem 4rem; }
+        .sec-label { display: inline-flex; align-items: center; gap: 10px; font-family: 'Inter', sans-serif; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.9rem; }
         .sec-label::before { content:''; display:block; width:28px; height:2px; background:var(--coral); }
-        h2 { font-size: clamp(2.2rem, 4vw, 3.2rem); font-weight: 800; line-height: 1.1; margin-bottom: 4rem; }
+        
+        h2 { font-size: clamp(1.9rem, 3.2vw, 2.8rem); font-weight: 800; line-height: 1.2; margin-bottom: 3rem; }
         h2 span { color: var(--coral); }
 
-        #sobre { background: var(--ink); color: var(--paper); border-radius: 60px; margin: 0 2rem; }
+        #sobre { background: var(--ink); color: var(--paper); border-radius: 40px; margin: 0 2rem; }
         #sobre .sec-label { color: rgba(247,244,238,0.45); }
         #sobre .sec-label::before { background: var(--lime); }
         #sobre h2 { color: var(--paper); }
         #sobre h2 span { color: var(--lime); }
-        .sobre-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
-        .sobre-text p { font-size: 1.05rem; line-height: 1.8; color: rgba(247,244,238,0.75); margin-bottom: 1.5rem; font-weight: 300; }
-        .sobre-text p strong { color: var(--lime); font-weight: 600; }
-        .badges { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 2rem; }
-        .badge { font-family: 'Inter', sans-serif; border-radius: 100px; padding: 8px 18px; font-size: 0.78rem; font-weight: 600; }
+        
+        .sobre-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+        .sobre-text p { font-size: 1rem; line-height: 1.8; color: rgba(247,244,238,0.72); margin-bottom: 1.2rem; font-weight: 300; }
+        .sobre-text p strong { color: var(--lime); font-weight: 500; }
+        
+        .badges { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 1.8rem; }
+        .badge { font-family: 'Inter', sans-serif; border-radius: 100px; padding: 7px 15px; font-size: 0.75rem; font-weight: 500; }
         .badge-dim { background: rgba(247,244,238,0.08); border: 1px solid rgba(247,244,238,0.12); color: rgba(247,244,238,0.8); }
         .badge-lime { background: var(--lime); color: var(--ink); }
+        
+        .facts { display: flex; flex-direction: column; gap: 1rem; }
+        .fact { background: rgba(247,244,238,0.05); border: 1px solid rgba(247,244,238,0.09); border-radius: 18px; padding: 1.3rem 1.5rem; display: flex; align-items: flex-start; gap: 1rem; }
+        .fact-icon { width: 40px; height: 40px; border-radius: 11px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+        .fact-title { font-weight: 700; font-size: 0.95rem; color: var(--paper); margin-bottom: 3px; }
+        .fact-text { font-family: 'Inter', sans-serif; font-size: 0.8rem; color: rgba(247,244,238,0.5); line-height: 1.5; }
 
-        .facts { display: flex; flex-direction: column; gap: 1.2rem; }
-        .fact { background: rgba(247,244,238,0.04); border: 1px solid rgba(247,244,238,0.08); border-radius: 24px; padding: 1.5rem 1.8rem; display: flex; align-items: flex-start; gap: 1.2rem; }
-        .fact-icon { width: 45px; height: 45px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
-        .fact-title { font-weight: 700; font-size: 1.05rem; color: var(--paper); margin-bottom: 4px; }
-        .fact-text { font-family: 'Inter', sans-serif; font-size: 0.85rem; color: rgba(247,244,238,0.5); line-height: 1.6; }
+        #diferenciais { background: var(--paper); }
+        .dif-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
+        .dif-card { background: var(--card); border-radius: 22px; padding: 2rem; border: 1px solid rgba(14,14,18,0.07); transition: transform 0.25s, box-shadow 0.25s; position: relative; overflow: hidden; }
+        .dif-card:hover { transform: translateY(-6px); box-shadow: 0 20px 55px rgba(14,14,18,0.10); }
+        .dif-card::after { content:''; position: absolute; bottom:-50px; right:-50px; width:130px; height:130px; border-radius:50%; opacity:0.07; transition: opacity 0.3s; }
+        .dc1::after{background:var(--coral)} .dc2::after{background:var(--violet)} .dc3::after{background:var(--sky)}
+        .dc4::after{background:var(--lime)} .dc5::after{background:var(--coral)} .dc6::after{background:var(--violet)}
+        .dif-num { font-family: 'Inter', sans-serif; font-size:0.68rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--muted); margin-bottom:0.9rem; }
+        
+        .dif-icon { font-size: 1.8rem; display: block; margin-bottom: 0.9rem; color: var(--ink); }
+        .dif-title { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .dif-desc { font-family: 'Inter', sans-serif; font-size: 0.86rem; color: var(--muted); line-height: 1.65; }
 
-        .dif-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-        .dif-card { background: var(--card); border-radius: 28px; padding: 2.5rem; border: 1px solid rgba(14,14,18,0.06); transition: all 0.4s ease; position: relative; overflow: hidden; }
-        .dif-card:hover { transform: translateY(-10px); box-shadow: 0 30px 60px rgba(14,14,18,0.08); }
-        .dif-icon { font-size: 2rem; display: block; margin-bottom: 1.2rem; color: var(--ink); }
-        .dif-title { font-size: 1.25rem; font-weight: 800; margin-bottom: 0.8rem; }
-        .dif-desc { font-family: 'Inter', sans-serif; font-size: 0.9rem; color: var(--muted); line-height: 1.7; }
-
+        #habilidades { background: var(--paper); padding-top: 0; }
         .skills-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
-        .skill-group { background: var(--card); border-radius: 28px; padding: 2.5rem; border: 1px solid rgba(14,14,18,0.06); }
-        .ski-bar { height: 6px; background: rgba(14,14,18,0.05); border-radius:100px; overflow:hidden; margin-top: 8px; }
+        .skill-group { background: var(--card); border-radius: 22px; padding: 2rem; border: 1px solid rgba(14,14,18,0.07); }
+        .sg-title { font-weight:700; font-size:0.95rem; text-transform:uppercase; margin-bottom:1.4rem; display:flex; align-items:center; gap:9px; }
+        .sg-dot { width:9px; height:9px; border-radius:50%; }
+        
+        .ski { margin-bottom: 1rem; }
+        .ski-row { display:flex; justify-content:space-between; align-items:center; margin-bottom:5px; }
+        .ski-name { font-family: 'Inter', sans-serif; font-size: 0.87rem; font-weight: 500; }
+        .ski-lvl { font-family: 'Inter', sans-serif; font-size: 0.72rem; color: var(--muted); }
+        
+        .ski-bar { height: 5px; background: rgba(14,14,18,0.07); border-radius:100px; overflow:hidden; }
         .ski-fill { height:100%; border-radius:100px; }
+        .f-coral{background:var(--coral)} .f-violet{background:var(--violet)} .f-sky{background:var(--sky)} .f-lime{background:#7EB800}
+        
+        .soft-group { grid-column: span 2; background: var(--card); border-radius: 22px; padding: 2rem; border: 1px solid rgba(14,14,18,0.07); }
+        .soft-pills { display: flex; flex-wrap: wrap; gap: 9px; }
+        .soft-pill { font-family: 'Inter', sans-serif; background: rgba(56,207,255,0.09); color: #0899BF; border: 1px solid rgba(56,207,255,0.22); border-radius: 100px; padding: 8px 17px; font-size: 0.82rem; font-weight: 500; }
 
-        #projetos { background: var(--ink); color: var(--paper); border-radius: 60px; margin: 0 2rem; }
-        .exp { display: grid; grid-template-columns: 240px 1fr; gap: 4rem; padding: 3.5rem 0; border-bottom: 1px solid rgba(247,244,238,0.06); }
-        .exp-role { font-weight:800; font-size:1.6rem; color:var(--paper); margin-bottom:1.2rem; line-height:1.2; }
+        #projetos { background: var(--ink); color: var(--paper); border-radius: 40px; margin: 0 2rem; }
+        #projetos .sec-label { color: rgba(247,244,238,0.45); }
+        #projetos .sec-label::before { background: var(--sky); }
+        #projetos h2 { color: var(--paper); }
+        #projetos h2 span { color: var(--sky); }
+        
+        .exp { display: grid; grid-template-columns: 210px 1fr; gap: 2.5rem; padding: 2.5rem 0; border-bottom: 1px solid rgba(247,244,238,0.08); }
+        .exp:last-child { border-bottom: none; }
+        .exp-period { font-family: 'Inter', sans-serif; font-size: 0.76rem; color: rgba(247,244,238,0.4); font-weight:300; margin-bottom:5px; }
+        .exp-co { font-weight:700; font-size:1.1rem; color:var(--paper); }
+        .exp-tag { font-family: 'Inter', sans-serif; display:inline-block; margin-top:8px; font-size:0.68rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; padding:4px 10px; border-radius:100px; }
+        .exp-role { font-weight:700; font-size:1.4rem; color:var(--paper); margin-bottom:1rem; line-height:1.2; }
+        
+        .exp-list { list-style:none; display:flex; flex-direction:column; gap:0.65rem; }
+        .exp-list li { font-family: 'Inter', sans-serif; font-size:0.9rem; color:rgba(247,244,238,0.62); line-height:1.65; padding-left:1.3rem; position:relative; font-weight:300; }
+        .exp-list li::before { content:''; position:absolute; left:0; top:10px; width:5px; height:5px; border-radius:50%; background:var(--sky); }
+        .metric-tag { font-family: 'Inter', sans-serif; display:inline-block; margin-top:1.1rem; background:rgba(200,241,53,0.1); border:1px solid rgba(200,241,53,0.2); color:var(--lime); padding:8px 16px; border-radius:10px; font-size:0.84rem; font-weight:500; }
 
-        .contato-box { background:var(--card); border-radius:50px; padding:6rem 4rem; border:1px solid rgba(14,14,18,0.06); max-width:800px; margin:0 auto; text-align: center; }
-        .c-links { display:flex; gap:1.2rem; justify-content:center; flex-wrap:wrap; margin-top: 3rem; }
+        #contato { padding: 6rem 4rem; text-align: center; }
+        .contato-box { background:var(--card); border-radius:40px; padding:5rem 3rem; border:1px solid rgba(14,14,18,0.07); max-width:680px; margin:0 auto; position:relative; overflow:hidden; }
+        .contato-box h2 { font-size:2.5rem; position:relative; z-index:1; }
+        .contato-box p { font-family: 'Inter', sans-serif; color:var(--muted); font-size:0.98rem; line-height:1.7; margin-bottom:2.5rem; font-weight:300; position:relative; z-index:1; }
+        
+        .c-link { display:flex; align-items:center; gap:9px; background:var(--ink); color:var(--paper); padding:13px 22px; border-radius:100px; text-decoration:none; font-family: 'Inter', sans-serif; font-size:0.86rem; font-weight:600; transition:all 0.2s; }
+        .c-link:hover { transform:translateY(-2px); background:var(--coral); }
+        .c-link i { font-size: 0.95rem; }
 
-        /* RESPONSIVIDADE */
-        @media (max-width: 1024px) {
-            nav { padding: 1rem 2rem; }
-            #hero { padding: 0 2rem; text-align: center; padding-top: 120px; }
-            .hero-container { grid-template-columns: 1fr; gap: 3rem; }
-            .hero-left h1 { font-size: 3.5rem; }
-            .hero-sub-text { margin: 0 auto 3rem auto; border-left: none; border-top: 4px solid var(--lime); padding-top: 1.5rem; }
-            .hero-ctas { justify-content: center; }
-            .hero-right { justify-content: center; }
-            .stat-impressions { left: 0; top: -5%; }
-            .hero-bg-text { display: none; }
-            .sobre-grid, .skills-wrap, .dif-grid { grid-template-columns: 1fr; }
-            .exp { grid-template-columns: 1fr; gap: 1.5rem; }
+        footer { font-family: 'Inter', sans-serif; text-align:center; padding:2rem; font-size:0.78rem; color:var(--muted); border-top:1px solid rgba(14,14,18,0.07); }
+
+        /* Responsividade */
+        @media (max-width: 900px) {
+            nav { padding: 1rem; flex-direction: column; gap: 10px; }
+            #hero { grid-template-columns: 1fr; padding: 3rem 1.5rem; text-align: center; }
+            .hero-right { display: none; }
+            .sobre-grid, .skills-wrap { grid-template-columns: 1fr; gap: 2rem; }
+            .dif-grid { grid-template-columns: 1fr; }
+            .exp { grid-template-columns: 1fr; gap: 10px; }
         }
     </style>
 </head>
@@ -244,38 +217,46 @@
 </nav>
 
 <section id="hero">
-    <div class="hero-bg-text">STRATEGY</div>
-    
-    <div class="hero-container">
-        <div class="hero-left">
-            <div class="hero-tag">
-                <i class="fa-solid fa-circle-check"></i> SEO Analyst & Growth
-            </div>
-            <h1>SEO que gera <span class="highlight">lucro real.</span></h1>
-            <p class="hero-sub-text">
-                Analista de SEO Pleno conectando <strong>Neuromarketing</strong> e <strong>Dados</strong> para transformar cliques em receita sustentável e escalável.
-            </p>
-            <div class="hero-ctas">
-                <a href="#projetos" class="btn-p">Explorar Projetos <i class="fa-solid fa-arrow-right"></i></a>
-                <a href="#contato" class="btn-o">Falar comigo</a>
-            </div>
+    <div class="hero-blob"></div>
+    <div class="dot dot1"></div>
+    <div class="dot dot2"></div>
+    <div class="dot dot3"></div>
+
+    <div class="hero-left">
+        <div class="hero-tag">Disponível para novos projetos</div>
+        <h1>SEO que<br><em>gera resultado</em>,<br>não só ranking.</h1>
+        <p class="hero-sub">Analista de SEO Pleno com +3 anos conectando estratégia de conteúdo e dados para escalar tráfego orgânico que converte de verdade.</p>
+        <div class="hero-ctas">
+            <a href="#projetos" class="btn-p">Ver experiência</a>
+            <a href="#contato" class="btn-o">Falar comigo</a>
         </div>
+    </div>
 
-        <div class="hero-right">
-            <div class="photo-wrapper">
-                <img src="https://via.placeholder.com/480x600/1e1e1e/FFFFFF?text=SUA+FOTO+AQUI" alt="Janiel Bruno" class="main-photo">
-                
-                <div class="floating-stat stat-impressions">
-                    <span class="number">+39%</span>
-                    <span class="label">Organic Growth</span>
+    <div class="hero-right">
+        <div class="hero-card">
+            <div class="hc-top">
+                <div class="avatar">JB</div>
+                <div>
+                    <div class="hc-name">Janiel Bruno</div>
+                    <div class="hc-role">Analista de SEO Pleno · São Paulo</div>
                 </div>
-
-                <div class="floating-stat stat-experience">
-                    <i class="fa-solid fa-brain" style="color: var(--violet); font-size: 1.8rem;"></i>
-                    <div style="text-align: left;">
-                        <span style="display:block; font-weight:800; font-size: 1.15rem;">Neuromarketing</span>
-                        <span style="font-size:0.75rem; color: var(--muted); font-weight: 500;">Estratégia aplicada</span>
-                    </div>
+            </div>
+            <div class="stats-grid">
+                <div class="stat lime">
+                    <div class="stat-n">+39%</div>
+                    <div class="stat-l">Impressões orgânicas</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-n">3+</div>
+                    <div class="stat-l">Anos de experiência</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-n" style="font-size:1rem;">GA4 · GSC</div>
+                    <div class="stat-l">Semrush · Screaming Frog</div>
+                </div>
+                <div class="stat violet">
+                    <div class="stat-n">Inglês</div>
+                    <div class="stat-l">Avançado</div>
                 </div>
             </div>
         </div>
@@ -287,28 +268,45 @@
     <h2>Dados que <span>contam histórias</span>.<br>Conteúdo que <span>gera negócio</span>.</h2>
     <div class="sobre-grid">
         <div class="sobre-text">
-            <p>Sou Janiel Bruno, Analista de SEO Pleno com foco em <strong>performance e ROI real</strong>. Minha abordagem une SEO Técnico, estratégia de conteúdo e inteligência de dados.</p>
-            <p>Formado em <strong>Marketing</strong> com pós-graduação em <strong>Neuromarketing</strong>, atuo unindo a psicologia do consumidor ao ranqueamento técnico.</p>
+            <p>Sou Janiel Bruno, Analista de SEO Pleno com foco em <strong>performance e ROI real</strong>. Minha abordagem une SEO Técnico, estratégia de conteúdo e inteligência de dados para criar crescimento orgânico sustentável.</p>
+            <p>Ao longo de mais de <strong>3 anos de carreira</strong>, trabalhei de redação e inbound marketing até a gestão estratégica de portfólio multidisciplinar em agência — passando por SaaS B2B e negócios locais.</p>
+            <p>Formado em <strong>Marketing</strong> com pós-graduação em <strong>Neuromarketing</strong>, inglês avançado e honraria acadêmica pela Anhembi Morumbi.</p>
             <div class="badges">
                 <span class="badge badge-lime">SEO Técnico</span>
-                <span class="badge badge-lime">Neuromarketing</span>
+                <span class="badge badge-lime">Marketing de Conteúdo</span>
+                <span class="badge badge-dim">Inbound Marketing</span>
                 <span class="badge badge-dim">CRO</span>
-                <span class="badge badge-dim">Growth Marketing</span>
+                <span class="badge badge-dim">SEO Local</span>
+                <span class="badge badge-dim">Neuromarketing</span>
             </div>
         </div>
         <div class="facts">
             <div class="fact">
                 <div class="fact-icon" style="background:rgba(200,241,53,0.12); color: var(--lime);"><i class="fa-solid fa-graduation-cap"></i></div>
                 <div>
-                    <div class="fact-title">Formação Acadêmica</div>
-                    <div class="fact-text">Marketing + Pós em Neuromarketing + Especialização Analista de SEO.</div>
+                    <div class="fact-title">Formação acadêmica completa</div>
+                    <div class="fact-text">Bacharelado em Marketing + Pós em Neuromarketing + Especialização Analista de SEO (Julia do SEO, 2024)</div>
+                </div>
+            </div>
+            <div class="fact">
+                <div class="fact-icon" style="background:rgba(56,207,255,0.12); color: var(--sky);"><i class="fa-solid fa-award"></i></div>
+                <div>
+                    <div class="fact-title">Reconhecimento acadêmico</div>
+                    <div class="fact-text">Condecorado com Anhembi Morumbi Honors por destaque acadêmico em 2020</div>
                 </div>
             </div>
             <div class="fact">
                 <div class="fact-icon" style="background:rgba(123,79,255,0.12); color: var(--violet);"><i class="fa-solid fa-earth-americas"></i></div>
                 <div>
-                    <div class="fact-title">Inglês Avançado</div>
-                    <div class="fact-text">Capacidade de atuar com ferramentas e conteúdos internacionais.</div>
+                    <div class="fact-title">Inglês avançado</div>
+                    <div class="fact-text">Capacidade de atuar com clientes, conteúdos e ferramentas internacionais sem barreiras</div>
+                </div>
+            </div>
+            <div class="fact">
+                <div class="fact-icon" style="background:rgba(255,92,58,0.12); color: var(--coral);"><i class="fa-solid fa-handshake"></i></div>
+                <div>
+                    <div class="fact-title">Visão de produto e CS</div>
+                    <div class="fact-text">Participante do Comitê de Customer Success da Magis5 para melhoria da experiência do cliente</div>
                 </div>
             </div>
         </div>
@@ -319,20 +317,77 @@
     <div class="sec-label">Por que eu?</div>
     <h2>O que me <span>diferencia</span></h2>
     <div class="dif-grid">
-        <div class="dif-card">
+        <div class="dif-card dc1">
+            <div class="dif-num">01</div>
             <i class="fa-solid fa-chart-line dif-icon"></i>
-            <div class="dif-title">SEO Guiado por Dados</div>
-            <div class="dif-desc">Decisões embasadas em GA4, Semrush e GSC. Zero achismo, foco total em ROI.</div>
+            <div class="dif-title">SEO guiado por dados</div>
+            <div class="dif-desc">Cada decisão é embasada em GA4, Semrush, Search Console e Screaming Frog. Zero achismo, máximo ROI.</div>
         </div>
-        <div class="dif-card">
+        <div class="dif-card dc2">
+            <div class="dif-num">02</div>
+            <i class="fa-solid fa-pen-nib dif-icon"></i>
+            <div class="dif-title">Conteúdo que converte</div>
+            <div class="dif-desc">Produzi conteúdos que levaram uma marca à menor taxa de rejeição do nicho — porque entendo intenção de busca além da palavra-chave.</div>
+        </div>
+        <div class="dif-card dc3">
+            <div class="dif-num">03</div>
             <i class="fa-solid fa-laptop-code dif-icon"></i>
             <div class="dif-title">Ponte entre SEO e TI</div>
-            <div class="dif-desc">Tradução de diagnósticos técnicos em requisitos claros para desenvolvedores.</div>
+            <div class="dif-desc">Traduzo diagnósticos técnicos em requisitos claros para devs: rastreamento, indexação, Core Web Vitals — sem perda de informação.</div>
         </div>
-        <div class="dif-card">
+        <div class="dif-card dc4">
+            <div class="dif-num">04</div>
+            <i class="fa-solid fa-layer-group dif-icon"></i>
+            <div class="dif-title">Gestão de portfólio</div>
+            <div class="dif-desc">Gerencio múltiplos clientes simultaneamente, adaptando estratégia de SEO às particularidades e KPIs de cada nicho.</div>
+        </div>
+        <div class="dif-card dc5">
+            <div class="dif-num">05</div>
             <i class="fa-solid fa-brain dif-icon"></i>
-            <div class="dif-title">Visão de Negócio</div>
-            <div class="dif-desc">Tradução de métricas técnicas em linguagem de negócio para stakeholders.</div>
+            <div class="dif-title">Visão de negócio</div>
+            <div class="dif-desc">Conduzo reuniões com clientes traduzindo métricas técnicas em linguagem de negócio acessível a qualquer stakeholder.</div>
+        </div>
+        <div class="dif-card dc6">
+            <div class="dif-num">06</div>
+            <i class="fa-solid fa-location-dot dif-icon"></i>
+            <div class="dif-title">SEO Local na prática</div>
+            <div class="dif-desc">Gestão real do Google Perfil de Empresas para negócios físicos, focando em ranqueamento local, rotas e chamadas.</div>
+        </div>
+    </div>
+</section>
+
+<section id="habilidades">
+    <div class="sec-label">Ferramentas & skills</div>
+    <h2>Minhas <span>habilidades</span></h2>
+    <div class="skills-wrap">
+        <div class="skill-group">
+            <div class="sg-title"><div class="sg-dot" style="background:var(--coral)"></div>SEO & Ferramentas</div>
+            <div class="ski"><div class="ski-row"><span class="ski-name">SEO Técnico & Estratégico</span><span class="ski-lvl">Avançado</span></div><div class="ski-bar"><div class="ski-fill f-coral" style="width:93%"></div></div></div>
+            <div class="ski"><div class="ski-row"><span class="ski-name">Semrush & Search Console</span><span class="ski-lvl">Avançado</span></div><div class="ski-bar"><div class="ski-fill f-coral" style="width:91%"></div></div></div>
+            <div class="ski"><div class="ski-row"><span class="ski-name">Google Analytics 4</span><span class="ski-lvl">Avançado</span></div><div class="ski-bar"><div class="ski-fill f-coral" style="width:88%"></div></div></div>
+            <div class="ski"><div class="ski-row"><span class="ski-name">Screaming Frog</span><span class="ski-lvl">Avançado</span></div><div class="ski-bar"><div class="ski-fill f-coral" style="width:85%"></div></div></div>
+            <div class="ski"><div class="ski-row"><span class="ski-name">SEO Local (GMB)</span><span class="ski-lvl">Intermediário+</span></div><div class="ski-bar"><div class="ski-fill f-coral" style="width:80%"></div></div></div>
+        </div>
+        <div class="skill-group">
+            <div class="sg-title"><div class="sg-dot" style="background:var(--violet)"></div>Conteúdo & Copy</div>
+            <div class="ski"><div class="ski-row"><span class="ski-name">Planejamento editorial</span><span class="ski-lvl">Avançado</span></div><div class="ski-bar"><div class="ski-fill f-violet" style="width:90%"></div></div></div>
+            <div class="ski"><div class="ski-row"><span class="ski-name">Redação & Storytelling</span><span class="ski-lvl">Avançado</span></div><div class="ski-bar"><div class="ski-fill f-violet" style="width:89%"></div></div></div>
+            <div class="ski"><div class="ski-row"><span class="ski-name">Inbound Marketing</span><span class="ski-lvl">Avançado</span></div><div class="ski-bar"><div class="ski-fill f-violet" style="width:87%"></div></div></div>
+            <div class="ski"><div class="ski-row"><span class="ski-name">CRO & Landing Pages</span><span class="ski-lvl">Intermediário+</span></div><div class="ski-bar"><div class="ski-fill f-violet" style="width:82%"></div></div></div>
+            <div class="ski"><div class="ski-row"><span class="ski-name">WordPress & HTML/CSS</span><span class="ski-lvl">Intermediário</span></div><div class="ski-bar"><div class="ski-fill f-violet" style="width:65%"></div></div></div>
+        </div>
+        <div class="soft-group">
+            <div class="sg-title"><div class="sg-dot" style="background:var(--sky)"></div>Soft skills & diferenciais</div>
+            <div class="soft-pills">
+                <span class="soft-pill">Comunicação com stakeholders</span>
+                <span class="soft-pill">Gestão de clientes</span>
+                <span class="soft-pill">Pensamento analítico</span>
+                <span class="soft-pill">Inteligência de mercado</span>
+                <span class="soft-pill">Inglês avançado</span>
+                <span class="soft-pill">Multitasking estratégico</span>
+                <span class="soft-pill">Customer Success</span>
+                <span class="soft-pill">Neuromarketing</span>
+            </div>
         </div>
     </div>
 </section>
@@ -350,10 +405,27 @@
             <div>
                 <div class="exp-role">Analista de SEO Pleno</div>
                 <ul class="exp-list">
-                    <li>Gestão de portfólio multidisciplinar em diversos nichos.</li>
-                    <li>Interface técnica com TI para melhoria de Core Web Vitals.</li>
-                    <li>Consultoria estratégica e reuniões de retenção baseadas em dados.</li>
+                    <li><strong>Gestão de portfólio multidisciplinar</strong> — gerenciamento estratégico de múltiplos projetos simultâneos em diversos nichos, adaptando SEO on-page e técnico aos KPIs de cada cliente.</li>
+                    <li><strong>Inteligência de mercado</strong> — uso avançado de Semrush e Analytics para identificar lacunas de conteúdo e oportunidades competitivas além do monitoramento básico.</li>
+                    <li><strong>Interface técnica com TI</strong> — tradução de diagnósticos do Screaming Frog/GSC em requisitos claros para correção de rastreamento, indexação e Core Web Vitals.</li>
+                    <li><strong>Consultoria e retenção</strong> — reuniões estratégicas apresentando resultados e traduzindo métricas técnicas em visão de negócio para stakeholders não-técnicos.</li>
                 </ul>
+            </div>
+        </div>
+
+        <div class="exp">
+            <div>
+                <div class="exp-period">Jun 2022 – Jun 2024</div>
+                <div class="exp-co">Magis5</div>
+                <span class="exp-tag tg-coral">SaaS B2B</span>
+            </div>
+            <div>
+                <div class="exp-role">Analista de Marketing Jr. & SEO</div>
+                <ul class="exp-list">
+                    <li><strong>SEO e conteúdo de performance</strong> — planejamento e execução do cronograma editorial com otimizações on-page que geraram resultados expressivos.</li>
+                    <li><strong>CRO</strong> — produção de landing pages e artigos focados em intenção de busca, consolidando a marca com a menor taxa de rejeição do nicho.</li>
+                </ul>
+                <div class="metric-tag"><i class="fa-solid fa-arrow-trend-up"></i> +39,3% em impressões orgânicas em 1 trimestre</div>
             </div>
         </div>
     </div>
@@ -361,18 +433,21 @@
 
 <section id="contato">
     <div class="contato-box">
-        <div class="sec-label" style="justify-content:center;">Vamos conversar</div>
-        <h2>Pronto para <span>escalar</span> seu orgânico?</h2>
-        <p>Se busca uma estratégia que une dados e comportamento humano, fala comigo.</p>
+        <div class="sec-label" style="justify-content:center; margin-bottom:0.9rem;">Vamos conversar</div>
+        <h2>Pronto para <span>escalar</span><br>seu orgânico?</h2>
+        <p>Se você busca SEO com visão estratégica, fala comigo.</p>
         <div class="c-links">
             <a href="mailto:janielbrunob@gmail.com" class="c-link">
-                <i class="fa-solid fa-envelope"></i> janielbrunob@gmail.com
+                <i class="fa-solid fa-envelope"></i>
+                janielbrunob@gmail.com
             </a>
             <a href="https://wa.me/5511957783061" target="_blank" class="c-link">
-                <i class="fa-brands fa-whatsapp"></i> (11) 95778-3061
+                <i class="fa-brands fa-whatsapp"></i>
+                (11) 95778-3061
             </a>
             <a href="https://www.linkedin.com/in/janielbruno" target="_blank" class="c-link li">
-                <i class="fa-brands fa-linkedin-in"></i> LinkedIn
+                <i class="fa-brands fa-linkedin-in"></i>
+                LinkedIn
             </a>
         </div>
     </div>
