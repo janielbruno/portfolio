@@ -19,7 +19,7 @@
             --bg-3:         #0D1E40;       
             
             --bg-hero:      #0D1E40;       
-            --box-photo:    #3B7FD9;       /* Caixa da foto que servirá de base para o filtro */
+            --box-photo:    #3B7FD9;       
             
             --blue-light:   #368DD9;       
             
@@ -143,72 +143,90 @@
             color: var(--accent);
             z-index: 5;
         }
-        .star-1 { top: 20vh; left: 3vw; font-size: 3.5rem; }
-        .star-2 { top: 28vh; left: 1vw; font-size: 1.5rem; }
-        .star-3 { bottom: 15vh; right: 35vw; font-size: 2rem; }
+        .star-1 { top: 15vh; left: 6vw; font-size: 2.5rem; }
+        .star-2 { top: 22vh; left: 3vw; font-size: 1.2rem; }
+        .star-3 { bottom: 18vh; right: 35vw; font-size: 1.5rem; }
 
-        /* TIPOGRAFIA NO FUNDO (Z-INDEX 1) */
-        .hero-typography {
-            position: absolute;
-            top: 5vh;
-            left: 2vw; 
-            z-index: 1; /* Atrás da imagem */
-            display: flex;
-            flex-direction: column;
-            line-height: 0.78; /* Espaçamento mais apertado entre as palavras */
-            pointer-events: none;
-        }
-
+        /* TIPOGRAFIA GERAL - TAMANHO REDUZIDO */
         .huge-text {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(8rem, 16vw, 18rem); /* Texto muito maior para vazar na tela */
+            font-size: clamp(5rem, 10vw, 11rem); /* Fonte menor e mais elegante */
             font-weight: 900;
             text-transform: uppercase;
             white-space: nowrap;
-            letter-spacing: -0.03em;
-        }
-        
-        .huge-text.solid { color: var(--text); }
-        .huge-text.outline {
-            color: transparent;
-            -webkit-text-stroke: 2px var(--accent);
+            letter-spacing: -0.02em;
+            pointer-events: none;
         }
 
-        /* CAIXA DE IMAGEM NA FRENTE (Z-INDEX 2) */
+        /* 1. PRIMEIRA PALAVRA (Z-INDEX 3 - FRENTE) */
+        .hero-typography-front {
+            position: absolute;
+            top: 12vh;
+            left: 5vw; 
+            z-index: 3; /* Na frente de tudo */
+            line-height: 0.85; /* Mais respiro entre as palavras */
+        }
+        .huge-text.solid { color: var(--text); }
+
+        /* 2. CAIXA DE IMAGEM (Z-INDEX 2 - MEIO) */
         .hero-image-box {
             position: absolute;
-            top: 18vh;
-            left: 5vw;
-            width: 35vw;
-            height: 70vh;
+            top: 15vh;
+            left: 15vw; /* Movida um pouco para a direita para não cobrir tanto texto */
+            width: 30vw; /* Ligeiramente mais estreita */
+            height: 65vh;
             background: var(--box-photo);
-            z-index: 2; /* Na frente do texto */
+            z-index: 2;
             overflow: hidden;
+            box-shadow: 8px 8px 0px rgba(0,0,0,0.2);
         }
 
         .hero-image-box img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            /* Efeito de mesclagem (Duotone simulado via CSS) */
             mix-blend-mode: luminosity; 
             opacity: 0.85; 
             filter: contrast(1.2) brightness(0.9);
             transition: 0.5s ease;
         }
         
-        /* Ao passar o mouse, a foto revela as cores originais */
         .hero-image-box:hover img { 
             mix-blend-mode: normal; 
             opacity: 1; 
             filter: contrast(1) brightness(1); 
         }
 
+        /* 3. PALAVRAS RESTANTES NO FUNDO (Z-INDEX 1 - ATRÁS) */
+        .hero-typography-back {
+            position: absolute;
+            top: 12vh;
+            left: 5vw; 
+            z-index: 1; 
+            display: flex;
+            flex-direction: column;
+            line-height: 0.85; /* Mesmo respiro da linha da frente */
+            pointer-events: none;
+        }
+        
+        .hero-typography-back .huge-text.outline {
+            margin-top: 0.85em; /* Pula a primeira linha corretamente com o novo line-height */
+            opacity: 0.6; /* Deixa o contorno um pouco mais sutil no fundo */
+        }
+        .hero-typography-back .huge-text.outline:first-child {
+            margin-top: 0; 
+        }
+
+        .huge-text.outline {
+            color: transparent;
+            -webkit-text-stroke: 1.5px var(--accent); /* Traço levemente mais fino */
+        }
+
         /* CONTATOS ALINHADOS À DIREITA */
         .hero-contacts {
             position: absolute;
-            left: 45vw; /* Fica ao lado da imagem */
-            top: 50vh;
+            left: 52vw; /* Mais espaço da imagem */
+            top: 45vh;
             z-index: 4;
             display: flex;
             flex-direction: column;
@@ -219,7 +237,7 @@
             font-family: 'DM Sans', sans-serif;
             color: var(--text);
             text-decoration: none;
-            font-size: 1.25rem;
+            font-size: 1.1rem; /* Ajustado para manter a proporção */
             letter-spacing: 0.05em;
             transition: 0.3s;
             display: flex; gap: 10px; align-items: center;
@@ -228,22 +246,27 @@
 
         .hero-intro {
             position: absolute;
-            bottom: 4vh;
+            bottom: 6vh;
             left: 5vw;
             z-index: 4;
             color: var(--text);
             font-family: 'DM Sans', sans-serif;
             font-size: 1.05rem;
-            max-width: 450px;
+            max-width: 500px; /* Mais largo para facilitar a leitura */
             line-height: 1.7;
             font-weight: 400;
+            background: rgba(13, 30, 64, 0.4); /* Fundo sutil para garantir legibilidade */
+            padding: 15px;
+            border-radius: 4px;
+            backdrop-filter: blur(5px);
         }
 
         /* Animações Hero */
         @keyframes fadeRight { from{opacity:0;transform:translateX(-20px)} to{opacity:1;transform:translateX(0)} }
         @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
         .hero-image-box { animation: fadeUp 0.8s 0.1s ease both; }
-        .hero-typography { animation: fadeRight 0.8s 0.3s ease both; }
+        .hero-typography-front { animation: fadeRight 0.8s 0.3s ease both; }
+        .hero-typography-back { animation: fadeRight 0.8s 0.3s ease both; }
         .hero-contacts { animation: fadeUp 0.8s 0.5s ease both; }
         .hero-intro { animation: fadeUp 0.8s 0.6s ease both; }
 
@@ -322,8 +345,8 @@
         /* ══ RESPONSIVIDADE ══ */
         @media (max-width: 1024px) {
             section { padding: 5rem 3rem; }
-            .hero-image-box { width: 45vw; left: 5vw; }
-            .huge-text { font-size: 18vw; }
+            .hero-image-box { width: 40vw; left: 10vw; }
+            .huge-text { font-size: 13vw; }
             .hero-contacts { left: 55vw; }
             .sobre-grid { gap: 2.5rem; }
             .dif-grid { grid-template-columns: repeat(2, 1fr); }
@@ -338,13 +361,15 @@
             
             /* Ajustes Hero Mobile */
             .hero-bg-color { height: 75vh; }
-            .hero-image-box { top: 12vh; left: 5vw; width: 90vw; height: 50vh; }
-            .hero-typography { left: -5vw; top: 8vh; }
-            .huge-text { font-size: 28vw; -webkit-text-stroke: 1px var(--accent); }
+            .hero-image-box { top: 18vh; left: 5vw; width: 90vw; height: 45vh; }
+            
+            .hero-typography-front, .hero-typography-back { left: 0vw; top: 12vh; }
+            .huge-text { font-size: 19vw; -webkit-text-stroke: 1px var(--accent); }
+            
             .hero-contacts { top: auto; bottom: 25vh; left: 5vw; right: 5vw; flex-direction: row; flex-wrap: wrap; justify-content: flex-start; }
             .hero-contacts a { font-size: 1rem; }
             .hero-intro { bottom: 3vh; left: 5vw; max-width: 90vw; font-size: 0.95rem; }
-            .star-1 { top: 15vh; font-size: 2rem; }
+            .star-1 { top: 12vh; font-size: 2rem; }
 
             .sobre-grid { grid-template-columns: 1fr; gap: 2rem; }
             .dif-grid { grid-template-columns: 1fr; }
@@ -388,15 +413,19 @@
     <div class="star-accent star-2">✦</div>
     <div class="star-accent star-3">✦</div>
 
-    <div class="hero-typography">
+    <div class="hero-typography-front">
         <div class="huge-text solid">PORTFOLIO</div>
-        <div class="huge-text outline">PORTFOLIO</div>
-        <div class="huge-text outline">PORTFOLIO</div>
-        <div class="huge-text outline">PORTFOLIO</div>
     </div>
 
     <div class="hero-image-box">
         <img src="Bruno-05.jpg" alt="Janiel Bruno">
+    </div>
+
+    <div class="hero-typography-back">
+        <div class="huge-text outline">PORTFOLIO</div>
+        <div class="huge-text outline">PORTFOLIO</div>
+        <div class="huge-text outline">PORTFOLIO</div>
+        <div class="huge-text outline">PORTFOLIO</div>
     </div>
 
     <div class="hero-contacts">
