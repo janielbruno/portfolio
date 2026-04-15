@@ -150,7 +150,7 @@
         /* TIPOGRAFIA GERAL */
         .huge-text {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(8rem, 16vw, 18rem);
+            font-size: clamp(6rem, 15vw, 18rem); /* Reduzido o mínimo para mobile */
             font-weight: 900;
             text-transform: uppercase;
             white-space: nowrap;
@@ -188,7 +188,7 @@
         }
         
         .huge-text.outline.hidden-first {
-            visibility: hidden; /* Esconde a primeira para não conflitar com o texto sólido, mas mantém o espaçamento intacto */
+            visibility: hidden;
         }
 
         /* 2. CAIXA DE IMAGEM (Z-INDEX 2 - MEIO) */
@@ -199,7 +199,7 @@
             width: 35vw;
             height: 70vh;
             background: var(--box-photo);
-            z-index: 2; /* Na frente do bloco de fundo, atrás da primeira palavra */
+            z-index: 2; 
             overflow: hidden;
         }
 
@@ -228,7 +228,6 @@
             display: flex;
             flex-direction: column;
             gap: 1.2rem;
-            /* Fundo escuro quase sólido para alta legibilidade */
             background-color: rgba(13, 30, 64, 0.85); 
             padding: 1.5rem;
             border-radius: 4px;
@@ -259,7 +258,6 @@
             line-height: 1.7;
             font-weight: 400;
             
-            /* Efeito "vidro fosco" apenas no que fica atrás da caixa */
             background: rgba(7, 15, 32, 0.55); 
             backdrop-filter: blur(8px);
             -webkit-backdrop-filter: blur(8px);
@@ -279,14 +277,32 @@
 
         /* ─── SOBRE E RESTANTE ─── */
         #sobre { background: var(--bg-2); }
-        .sobre-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+        
+        /* CORREÇÃO DO ALINHAMENTO NA SEÇÃO SOBRE */
+        .sobre-grid { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 4rem; 
+            align-items: stretch; /* Garante que as colunas ocupem a mesma altura se possível, mas permite alinhamento flexível */
+        }
+        .sobre-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
         .sobre-text p { font-size: 0.97rem; line-height: 1.85; color: var(--text-muted); font-weight: 300; margin-bottom: 1.1rem; }
         .sobre-text p strong { color: var(--accent); font-weight: 500; }
         .badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 1.6rem; }
         .badge { font-family: 'DM Mono', monospace; border-radius: 2px; padding: 6px 13px; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; }
         .badge-accent { background: var(--accent-dim); border: 1px solid var(--text-border); color: var(--accent); }
         .badge-dim { background: rgba(242, 216, 167, 0.04); border: 1px solid rgba(242, 216, 167, 0.09); color: var(--text-muted); }
-        .facts { display: flex; flex-direction: column; gap: 12px; }
+        
+        .facts { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 12px; 
+            width: 100%; /* Garante que o bloco de fatos ocupe toda a largura da sua coluna */
+        }
         .fact {
             background: var(--bg-3); border: 1px solid var(--text-border);
             border-radius: 4px; padding: 1.2rem 1.4rem;
@@ -356,7 +372,10 @@
             .hero-typography-front, .hero-typography-back { left: 5vw; }
             .huge-text { font-size: 15vw; }
             .hero-contacts { right: 5vw; }
+            
+            /* Ajuste intermediário para os cards da seção Sobre */
             .sobre-grid { gap: 2.5rem; }
+            
             .dif-grid { grid-template-columns: repeat(2, 1fr); }
             .exp { grid-template-columns: 180px 1fr; gap: 2rem; }
         }
@@ -367,11 +386,13 @@
             .nav-toggle { display: flex; }
             section { padding: 4rem 1.4rem; }
             
-            /* Ajustes Hero Mobile */
+            /* Ajustes Hero Mobile - Correção da Palavra PORTFOLIO */
             .hero-bg-color { height: 75vh; }
             .hero-image-box { top: 12vh; left: 5vw; width: 90vw; height: 50vh; }
-            .hero-typography-front, .hero-typography-back { left: -5vw; top: 8vh; }
-            .huge-text { font-size: 28vw; -webkit-text-stroke: 1px var(--accent); }
+            
+            /* Reposicionamento e redimensionamento para o mobile */
+            .hero-typography-front, .hero-typography-back { left: 0vw; top: 8vh; width: 100vw; text-align: center; }
+            .huge-text { font-size: 17.5vw; -webkit-text-stroke: 1px var(--accent); text-align: center;} /* Ajustado para caber na tela */
             
             .hero-contacts { top: auto; bottom: 25vh; left: 5vw; right: 5vw; flex-direction: row; flex-wrap: wrap; justify-content: flex-start; }
             .hero-contacts a { font-size: 1rem; }
