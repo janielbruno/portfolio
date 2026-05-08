@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estúdio Visual — Janiel Bruno</title>
+    <meta name="description" content="Explorações estéticas entre moda, desenho artístico e otimização visual de performance.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg:           #070f20;       
+            --bg-2:         #0a142b;       
+            --bg-3:         #0D1E40;       
+            --accent:       #F2C879;       
+            --accent-blue:  #368DD9;
+            --text:         #F2D8A7;       
+            --text-muted:   rgba(242, 216, 167, 0.65);
+            --text-dim:     rgba(242, 216, 167, 0.15);
+            --border:       rgba(242, 216, 167, 0.1);
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+        
+        /* NAV SIMPLIFICADA */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 1.5rem 3.5rem;
+            background: rgba(7, 15, 32, 0.8);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--border);
+        }
+        .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 900; text-decoration: none; color: inherit; text-transform: uppercase; }
+        .back-link {
+            font-family: 'DM Mono', monospace; font-size: 0.75rem; letter-spacing: 0.1em;
+            text-transform: uppercase; color: var(--text-muted); text-decoration: none;
+            transition: 0.3s; display: flex; align-items: center; gap: 8px;
+        }
+        .back-link:hover { color: var(--accent); }
+
+        /* HERO AREA */
+        header {
+            padding: 12rem 5rem 4rem 5rem;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 4rem;
+            align-items: end;
+        }
+        
+        .hero-title h1 {
+            font-size: clamp(4rem, 8vw, 8rem);
+            line-height: 0.85;
+            text-transform: uppercase;
+            font-weight: 900;
+        }
+        .hero-title h1 span {
+            display: block;
+            font-style: italic;
+            font-weight: 400;
+            color: transparent;
+            -webkit-text-stroke: 1px var(--accent);
+        }
+
+        .hero-info {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--text-muted);
+            border-left: 1px solid var(--accent);
+            padding-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        /* GALERIA ASSIMÉTRICA */
+        .gallery-container {
+            padding: 4rem 5rem 8rem 5rem;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 20px;
+        }
+
+        .item {
+            background: var(--bg-3);
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: 0.4s ease-in-out;
+        }
+        .item:hover { border-color: var(--accent); transform: translateY(-5px); }
+
+        /* Estilos de proporção para a grade editorial */
+        .w-6 { grid-column: span 6; }
+        .w-4 { grid-column: span 4; }
+        .w-8 { grid-column: span 8; }
+        .h-large { aspect-ratio: 1/1.2; }
+        .h-medium { aspect-ratio: 1.5/1; }
+
+        .item-image {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--bg-2), var(--bg-3));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .item-image i {
+            font-size: 3rem;
+            color: var(--text-dim);
+            transition: 0.5s;
+        }
+        .item:hover .item-image i { color: var(--accent); transform: scale(1.2); }
+
+        .item-overlay {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            padding: 1.5rem;
+            background: linear-gradient(to top, rgba(7, 15, 32, 0.9), transparent);
+        }
+        .item-overlay span {
+            font-family: 'DM Mono', monospace;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            color: var(--accent);
+            letter-spacing: 0.15em;
+        }
+        .item-overlay h3 {
+            font-size: 1.4rem;
+            margin-top: 5px;
+        }
+
+        /* SECTION HOOK: ESTÉTICA E CRO */
+        .logic-section {
+            padding: 8rem 5rem;
+            background: var(--accent);
+            color: var(--bg);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
+        .logic-content h2 {
+            font-size: 3.5rem;
+            line-height: 1;
+            margin-bottom: 2rem;
+            color: var(--bg);
+        }
+        .logic-content p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            opacity: 0.8;
+        }
+        .logic-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .stat-box {
+            border: 1px solid rgba(7, 15, 32, 0.2);
+            padding: 2rem;
+            text-align: center;
+        }
+        .stat-box h4 { font-family: 'DM Mono', monospace; font-size: 2.5rem; margin-bottom: 10px; }
+        .stat-box p { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700; }
+
+        footer { text-align: center; padding: 4rem; border-top: 1px solid var(--border); font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.2em; }
+
+        /* RESPONSIVIDADE */
+        @media (max-width: 1024px) {
+            header { grid-template-columns: 1fr; padding-top: 10rem; }
+            .hero-info { border-left: none; border-top: 1px solid var(--accent); padding-left: 0; padding-top: 2rem; }
+            .gallery-container { grid-template-columns: repeat(2, 1fr); }
+            .w-6, .w-4, .w-8 { grid-column: span 1; }
+            .logic-section { grid-template-columns: 1fr; gap: 3rem; }
+        }
+
+        @media (max-width: 768px) {
+            header, .gallery-container, .logic-section { padding-left: 1.5rem; padding-right: 1.5rem; }
+            .hero-title h1 { font-size: 4rem; }
+            .gallery-container { grid-template-columns: 1fr; }
+            .logic-content h2 { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="nav-logo">Janiel<span>.</span></a>
+        <a href="index.html" class="back-link"><i class="fa-solid fa-arrow-left-long"></i> Portfólio</a>
+    </nav>
+
+    <header>
+        <div class="hero-title">
+            <h1>Estúdio<span>Visual</span></h1>
+        </div>
+        <div class="hero-info">
+            Para mim, a beleza é uma métrica de retenção. Onde outros veem apenas imagens, eu vejo proporção áurea, psicologia das cores e hierarquia de informação. <strong>O olhar apurado para a moda e as artes plásticas é o que me permite desenhar experiências que convertem.</strong>
+        </div>
+    </header>
+
+    <main class="gallery-container">
+        <div class="item w-8 h-large">
+            <div class="item-image">
+                <i class="fa-solid fa-palette"></i>
+            </div>
+            <div class="item-overlay">
+                <span>Artes Plásticas</span>
+                <h3>Desenho & Sombras</h3>
+            </div>
+        </div>
+
+        <div class="item w-4 h-large">
+            <div class="item-image">
+                <i class="fa-solid fa-shirt"></i>
+            </div>
+            <div class="item-overlay">
+                <span>Curadoria</span>
+                <h3>Moda e Estética</h3>
+            </div>
+        </div>
+
+        <div class="item w-4 h-medium">
+            <div class="item-image">
+                <i class="fa-solid fa-compass-drafting"></i>
+            </div>
+            <div class="item-overlay">
+                <span>UI/UX</span>
+                <h3>Arquitetura Visual</h3>
+            </div>
+        </div>
+
+        <div class="item w-8 h-medium">
+            <div class="item-image">
+                <i class="fa-solid fa-camera-retro"></i>
+            </div>
+            <div class="item-overlay">
+                <span>Composição</span>
+                <h3>Direção de Arte</h3>
+            </div>
+        </div>
+    </main>
+
+    <section class="logic-section">
+        <div class="logic-content">
+            <h2>A estética a serviço do ROI.</h2>
+            <p>Não acredito em design apenas "bonito". Acredito em interfaces que guiam o olhar, reduzem a carga cognitiva e induzem à ação. Minha paixão visual é a ferramenta que uso para otimizar a taxa de conversão (CRO) de cada projeto que toco.</p>
+        </div>
+        <div class="logic-stats">
+            <div class="stat-box">
+                <h4>+25%</h4>
+                <p>Média de Retenção Visual</p>
+            </div>
+            <div class="stat-box">
+                <h4>-15%</h4>
+                <p>Taxa de Rejeição (Bounce)</p>
+            </div>
+            <div class="stat-box">
+                <h4>100%</h4>
+                <p>Foco em Intenção Visual</p>
+            </div>
+            <div class="stat-box">
+                <h4>✦</h4>
+                <p>Critério Estético Superior</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2026 Estúdio Janiel Bruno. Curadoria & Performance.
+    </footer>
+
+    <script>
+        // Efeito de entrada suave
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.item, .logic-content, .stat-box').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s cubic-bezier(0.23, 1, 0.32, 1)';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
