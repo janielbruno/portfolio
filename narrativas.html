@@ -54,16 +54,28 @@
         }
         .back-link:hover { color: var(--accent); }
 
-        /* HERO EDITORIAL */
+        /* HERO EDITORIAL COM IMAGEM DE FUNDO ESTILIZADA */
         header {
-            padding: 12rem 5rem 6rem 5rem;
+            padding: 14rem 5rem 8rem 5rem;
             position: relative;
             border-bottom: 1px solid var(--text-border);
+            
+            /* IMAGEM DE FUNDO - AS VANTAGENS DE SER INVISÍVEL */
+            background-color: var(--bg);
+            background-image: 
+                linear-gradient(to bottom, rgba(7, 15, 32, 0.65), rgba(7, 15, 32, 1)), /* Gradiente para escurecer o fundo suavemente */
+                url('fundo-as-vantagens.jpg'); /* INSIRA O NOME CORRETO DA IMAGEM AQUI */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Efeito parallax leve */
+            background-blend-mode: luminosity; /* Mescla a imagem com os tons de azul do seu portfólio */
         }
+        
         .hero-label {
             font-family: 'DM Mono', monospace; font-size: 0.7rem; letter-spacing: 0.2em;
             text-transform: uppercase; color: var(--accent); margin-bottom: 2rem;
             display: flex; align-items: center; gap: 12px;
+            position: relative; z-index: 2;
         }
         .hero-label::before { content: ''; width: 40px; height: 1px; background: var(--accent); }
         
@@ -76,6 +88,7 @@
             margin-bottom: 3rem;
             position: relative;
             z-index: 2;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.5); /* Sombra para garantir leitura sobre a imagem */
         }
         h1 span {
             display: block;
@@ -92,16 +105,13 @@
             margin-left: auto;
             position: relative;
             z-index: 2;
+            background: rgba(7, 15, 32, 0.4);
+            padding: 2rem;
+            border-radius: 8px;
+            backdrop-filter: blur(5px);
+            border: 1px solid var(--text-border);
         }
         .hero-desc strong { color: var(--text); font-weight: 500; }
-
-        /* ESTRELA DE FUNDO */
-        .bg-star {
-            position: absolute; top: 10%; right: 10%;
-            font-size: 30vw; color: var(--text-dim);
-            opacity: 0.05; z-index: 0; pointer-events: none;
-            transform: rotate(15deg);
-        }
 
         /* GRID DE PROJETOS LITERÁRIOS/COPY */
         .works-section { padding: 8rem 5rem; }
@@ -165,7 +175,7 @@
             color: var(--text); text-transform: uppercase;
         }
 
-        /* NOVO: Estilo para a citação do poema */
+        /* Estilo para a citação do poema */
         .poem-quote {
             margin: 2rem 0;
             padding: 1.5rem 1.5rem 1.5rem 2rem;
@@ -247,10 +257,10 @@
 
         @media (max-width: 768px) {
             nav { padding: 1rem 1.5rem; }
-            header { padding: 8rem 1.5rem 4rem 1.5rem; }
+            header { padding: 10rem 1.5rem 4rem 1.5rem; background-attachment: scroll; }
             .works-section, .manifesto { padding: 4rem 1.5rem; }
             h1 { font-size: 4.5rem; }
-            .hero-desc { margin-left: 0; }
+            .hero-desc { margin-left: 0; padding: 1.5rem; }
             
             .work-block { grid-template-columns: 1fr; gap: 2rem; margin-bottom: 5rem; }
             .work-block:nth-child(even) { direction: ltr; }
@@ -270,7 +280,6 @@
     </nav>
 
     <header>
-        <i class="fa-solid fa-asterisk bg-star"></i>
         <div class="hero-label">Obras & Escritos</div>
         <h1>Narrativas<br><span>& Palavras</span></h1>
         <div class="hero-desc">
@@ -324,7 +333,7 @@
 
         <div class="work-block">
             <div class="work-visual">
-               <img src="00agarota.jpg" alt="Capa do Livro Narrativo" class="work-image">
+                <img src="00agarota.jpg" alt="Capa do Livro de Poemas" class="work-image">
             </div>
             <div class="work-content">
                 <div class="w-category">Projeto Literário</div>
@@ -335,8 +344,8 @@
                     <span class="w-tag">Inédito</span>
                     <span class="w-tag">Storytelling</span>
                 </div>
-                <a href="a-garota-que-nao-sabia-chorar.pdf" target="_blank" class="action-btn">
-                    <i class="fa-solid fa-file-pdf"></i> Ler primeiros capítulos
+                <a href="A Garota Que Não Sabia Chorar- 2 primeiros.pdf" target="_blank" class="action-btn">
+                    <i class="fa-solid fa-file-pdf"></i> Explore os primeiros capítulos aqui
                 </a>
             </div>
         </div>
