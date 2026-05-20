@@ -124,11 +124,22 @@
         }
         .item:hover .item-image i { color: var(--accent); transform: scale(1.2); }
 
+        /* Para quando você adicionar suas próprias imagens */
+        .item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.7;
+            transition: 0.5s ease;
+            filter: grayscale(30%);
+        }
+        .item:hover .item-image img { opacity: 1; filter: grayscale(0%); transform: scale(1.05); }
+
         .item-overlay {
             position: absolute;
             bottom: 0; left: 0; right: 0;
             padding: 1.5rem;
-            background: linear-gradient(to top, rgba(7, 15, 32, 0.9), transparent);
+            background: linear-gradient(to top, rgba(7, 15, 32, 0.95), transparent);
         }
         .item-overlay span {
             font-family: 'DM Mono', monospace;
@@ -140,6 +151,7 @@
         .item-overlay h3 {
             font-size: 1.4rem;
             margin-top: 5px;
+            line-height: 1.2;
         }
 
         /* SECTION HOOK: ESTÉTICA E CRO */
@@ -154,14 +166,15 @@
         }
         .logic-content h2 {
             font-size: 3.5rem;
-            line-height: 1;
+            line-height: 1.1;
             margin-bottom: 2rem;
             color: var(--bg);
         }
         .logic-content p {
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             line-height: 1.8;
-            opacity: 0.8;
+            opacity: 0.85;
+            margin-bottom: 1.5rem;
         }
         .logic-stats {
             display: grid;
@@ -172,9 +185,12 @@
             border: 1px solid rgba(7, 15, 32, 0.2);
             padding: 2rem;
             text-align: center;
+            background: rgba(7, 15, 32, 0.03);
+            transition: background 0.3s;
         }
-        .stat-box h4 { font-family: 'DM Mono', monospace; font-size: 2.5rem; margin-bottom: 10px; }
-        .stat-box p { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700; }
+        .stat-box:hover { background: rgba(7, 15, 32, 0.08); }
+        .stat-box h4 { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 10px; font-style: italic; color: var(--bg); }
+        .stat-box p { font-family: 'DM Mono', monospace; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700; color: var(--bg); opacity: 0.8; }
 
         footer { text-align: center; padding: 4rem; border-top: 1px solid var(--border); font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.2em; }
 
@@ -192,14 +208,15 @@
             .hero-title h1 { font-size: 4rem; }
             .gallery-container { grid-template-columns: 1fr; }
             .logic-content h2 { font-size: 2.5rem; }
+            .logic-stats { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
     <nav>
-        <a href="index" class="nav-logo">Janiel<span>.</span></a>
-        <a href="index" class="back-link"><i class="fa-solid fa-arrow-left-long"></i> Portfólio</a>
+        <a href="index.html" class="nav-logo">Janiel<span>.</span></a>
+        <a href="index.html" class="back-link"><i class="fa-solid fa-arrow-left-long"></i> Portfólio</a>
     </nav>
 
     <header>
@@ -207,73 +224,76 @@
             <h1>Estúdio<span>Visual</span></h1>
         </div>
         <div class="hero-info">
-            Para mim, a beleza é uma métrica de retenção. Onde outros veem apenas imagens, eu vejo proporção áurea, psicologia das cores e hierarquia de informação. <strong>O olhar apurado para a moda e as artes plásticas é o que me permite desenhar experiências que convertem.</strong>
+            Para mim, a beleza é uma métrica de retenção. Onde outros veem apenas imagens, eu vejo proporção, psicologia das cores e hierarquia de informação. <strong>Meu processo começa longe das telas. O olhar apurado para a moda e as artes é o que me permite desenhar a estrutura de experiências que convertem.</strong>
         </div>
     </header>
 
     <main class="gallery-container">
+        
         <div class="item w-8 h-large">
             <div class="item-image">
-                <i class="fa-solid fa-palette"></i>
-            </div>
+                <i class="fa-solid fa-pencil"></i>
+                </div>
             <div class="item-overlay">
-                <span>Artes Plásticas</span>
-                <h3>Desenho & Sombras</h3>
+                <span>Fundamentos Analógicos</span>
+                <h3>O Croqui & A Estrutura</h3>
             </div>
         </div>
 
         <div class="item w-4 h-large">
             <div class="item-image">
-                <i class="fa-solid fa-shirt"></i>
-            </div>
+                <i class="fa-solid fa-gem"></i>
+                </div>
             <div class="item-overlay">
-                <span>Curadoria</span>
-                <h3>Moda e Estética</h3>
+                <span>Neuromarketing Visual</span>
+                <h3>Curadoria de Desejo</h3>
             </div>
         </div>
 
         <div class="item w-4 h-medium">
             <div class="item-image">
-                <i class="fa-solid fa-compass-drafting"></i>
-            </div>
+                <i class="fa-solid fa-sitemap"></i>
+                </div>
             <div class="item-overlay">
-                <span>UI/UX</span>
-                <h3>Arquitetura Visual</h3>
+                <span>Arquitetura da Informação</span>
+                <h3>Esqueleto de Conversão</h3>
             </div>
         </div>
 
         <div class="item w-8 h-medium">
             <div class="item-image">
-                <i class="fa-solid fa-camera-retro"></i>
-            </div>
+                <i class="fa-solid fa-magnifying-glass-chart"></i>
+                </div>
             <div class="item-overlay">
-                <span>Composição</span>
-                <h3>Direção de Arte</h3>
+                <span>Visão Crítica</span>
+                <h3>Auditoria Visual (Tear-down)</h3>
             </div>
         </div>
     </main>
 
     <section class="logic-section">
         <div class="logic-content">
-            <h2>A estética a serviço do ROI.</h2>
-            <p>Não acredito em design apenas "bonito". Acredito em interfaces que guiam o olhar, reduzem a carga cognitiva e induzem à ação. Minha paixão visual é a ferramenta que uso para otimizar a taxa de conversão (CRO) de cada projeto que toco.</p>
+            <h2>A estética a serviço da conversão.</h2>
+            <p>Não acredito em design apenas "bonito" ou em templates engessados. Acredito que a verdadeira conversão começa no papel.</p>
+            <p>A moda me ensinou sobre proporção e respiro visual. Marcas de alto padrão não vendem apenas produtos, vendem status através do espaço negativo e do contraste. Trago esse rigor analógico para o marketing: desenho a jornada do usuário e a arquitetura da informação antes de qualquer linha de código. O resultado são páginas que não cansam a mente e guiam o clique naturalmente.</p>
         </div>
+        
         <div class="logic-stats">
             <div class="stat-box">
-                <h4>+25%</h4>
-                <p>Média de Retenção Visual</p>
+                <h4>Papel</h4>
+                <p>Planejamento Tátil</p>
             </div>
             <div class="stat-box">
-                <h4>-15%</h4>
-                <p>Taxa de Rejeição (Bounce)</p>
+                <h4>Moda</h4>
+                <p>Proporção & Contraste</p>
             </div>
             <div class="stat-box">
-                <h4>100%</h4>
-                <p>Foco em Intenção Visual</p>
+                <h4>UX</h4>
+                <p>Carga Cognitiva Reduzida</p>
             </div>
             <div class="stat-box">
-                <h4>✦</h4>
-                <p>Critério Estético Superior</p>
+                <h4>SEO</h4>
+                <p>Estrutura focada em ROI</p>
             </div>
         </div>
     </section>
