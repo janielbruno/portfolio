@@ -321,4 +321,420 @@
         .sobre-text p { font-size: 1.1rem; line-height: 1.8; color: var(--text-muted); font-weight: 300; margin-bottom: 1.5rem; }
         .sobre-text p strong { color: var(--accent); font-weight: 400; }
         
-        .facts { display: flex; flex-direction: column; gap: 2rem; border
+        .facts { display: flex; flex-direction: column; gap: 2rem; border-left: 1px solid var(--text-border); padding-left: 3rem; }
+        .fact { display: flex; align-items: flex-start; gap: 1.5rem; }
+        .fact-icon { font-size: 1.5rem; color: var(--accent); margin-top: 5px; }
+        .fact-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 400; color: var(--text); margin-bottom: 8px; }
+        .fact-text { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; }
+
+        /* ─── DIFERENCIAIS ─── */
+        #diferenciais { background: var(--bg-2); }
+        .dif-list { display: flex; flex-direction: column; }
+        .dif-item {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 2rem;
+            padding: 3rem 0;
+            border-top: 1px solid var(--text-border);
+            transition: all 0.3s;
+        }
+        .dif-item:hover { border-top-color: var(--accent); }
+        .dif-num {
+            font-family: 'Playfair Display', serif; font-size: 2.5rem; font-style: italic;
+            color: var(--accent-dim); transition: color 0.3s;
+        }
+        .dif-item:hover .dif-num { color: var(--accent); }
+        .dif-content h3 { font-size: 1.8rem; font-weight: 400; margin-bottom: 1rem; color: var(--text); }
+        .dif-content p { font-size: 1.05rem; color: var(--text-muted); line-height: 1.7; max-width: 700px; font-weight: 300; }
+
+        /* ─── HABILIDADES ─── */
+        #habilidades { background: var(--bg); }
+        .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; }
+        .skill-col h3 { font-family: 'DM Mono', monospace; font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 2.5rem; }
+        .skill-item {
+            display: flex; justify-content: space-between; align-items: flex-end;
+            padding: 1.2rem 0;
+            border-bottom: 1px dashed var(--text-border);
+        }
+        .skill-item:hover { border-bottom-style: solid; border-bottom-color: var(--accent); }
+        .skill-name { font-size: 1.1rem; color: var(--text); font-weight: 300; }
+        .skill-lvl { font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; }
+
+        /* ─── EXPERIÊNCIA ─── */
+        #projetos { background: var(--bg-2); }
+        .timeline { border-left: 1px solid var(--text-border); padding-left: 3rem; margin-left: 1rem; }
+        .exp { position: relative; margin-bottom: 5rem; }
+        .exp::before {
+            content: ''; position: absolute; left: -3.35rem; top: 0; width: 12px; height: 12px;
+            background: var(--bg-2); border: 2px solid var(--accent); border-radius: 50%;
+        }
+        .exp-header { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap; }
+        .exp-co { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 400; color: var(--text); }
+        .exp-period { font-family: 'DM Mono', monospace; font-size: 0.8rem; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; }
+        .exp-role { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 2rem; font-weight: 300; }
+        .exp-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; max-width: 800px; }
+        .exp-list li { font-size: 1rem; color: var(--text-muted); line-height: 1.8; padding-left: 1.5rem; position: relative; font-weight: 300; }
+        .exp-list li::before { content: '—'; position: absolute; left: 0; color: var(--accent-dim); }
+        .exp-list li strong { color: var(--text); font-weight: 400; }
+
+        /* ─── CONTATO ─── */
+        #contato { background: var(--bg); text-align: center; padding: 10rem 5rem; border-top: 1px solid var(--text-border); }
+        .contato-box { max-width: 800px; margin: 0 auto; }
+        .contato-box h2 { font-size: clamp(3rem, 5vw, 5rem); margin-bottom: 2rem; line-height: 1; }
+        .contato-box > p { font-size: 1.2rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 3rem; font-weight: 300; }
+        .c-links { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+        .c-link { display: flex; align-items: center; gap: 12px; background: transparent; border: 1px solid var(--accent-dim); color: var(--text); padding: 16px 32px; text-decoration: none; font-family: 'DM Mono', monospace; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; transition: all 0.3s; }
+        .c-link:hover { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+        .c-link i { font-size: 1.1rem; }
+
+        footer { text-align: center; padding: 2rem; border-top: 1px solid var(--text-border); font-family: 'DM Mono', monospace; font-size: 0.7rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.1em; background: var(--bg); }
+
+        /* ══ RESPONSIVIDADE ══ */
+        @media (max-width: 1024px) {
+            section { padding: 6rem 3rem; }
+            .hero-image-box { width: 45vw; left: 5vw; }
+            .hero-typography-front, .hero-typography-back { left: 5vw; }
+            .huge-text { font-size: 15vw; }
+            
+            /* Ajuste do novo painel glass para tablet */
+            .hero-glass-panel { width: 50vw; right: 3vw; padding: 2rem; }
+            .hg-stats { grid-template-columns: 1fr; gap: 1rem; }
+            
+            .moodboard-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto auto auto; }
+            .mood-1 { grid-column: 1 / 3; grid-row: 1 / 2; height: 300px; }
+            .mood-2 { grid-column: 1 / 2; grid-row: 2 / 3; height: 250px; }
+            .mood-3 { grid-column: 2 / 3; grid-row: 2 / 3; height: 250px; }
+            .mood-4 { grid-column: 1 / 3; grid-row: 3 / 4; }
+
+            .sobre-grid { grid-template-columns: 1fr; gap: 4rem; }
+            .facts { border-left: none; padding-left: 0; border-top: 1px solid var(--text-border); padding-top: 3rem; }
+            
+            .skills-grid { grid-template-columns: 1fr; gap: 3rem; }
+        }
+
+        @media (max-width: 768px) {
+            nav { padding: 1rem 1.4rem; background: var(--bg-hero); }
+            .nav-links { display: none; }
+            .nav-toggle { display: flex; }
+            section { padding: 4rem 1.5rem; }
+            
+            /* Ajustes Hero Mobile */
+            #hero { padding-top: 60vh; padding-bottom: 4rem; min-height: auto; }
+            .hero-bg-color { height: 75vh; }
+            .hero-image-box { top: 12vh; left: 5vw; width: 90vw; height: 45vh; }
+            .hero-typography-front, .hero-typography-back { left: 0vw; top: 8vh; width: 100vw; text-align: center; }
+            .huge-text { font-size: 17.5vw; -webkit-text-stroke: 1px var(--accent); text-align: center;} 
+            .star-1 { top: 15vh; font-size: 2rem; }
+            
+            /* Painel flutuante no mobile vai para baixo da imagem */
+            .hero-glass-panel { position: relative; top: auto; right: auto; width: 90vw; margin: 0 auto; z-index: 4; padding: 1.8rem; }
+            .hg-stats { grid-template-columns: 1fr 1fr; }
+            .hg-title { font-size: 2.2rem; }
+
+            .dif-item { grid-template-columns: 1fr; gap: 1rem; padding: 2rem 0; }
+            .dif-num { font-size: 2rem; margin-bottom: -1rem; }
+            
+            .timeline { padding-left: 1.5rem; margin-left: 0; }
+            .exp::before { left: -1.85rem; }
+            
+            .c-links { flex-direction: column; align-items: stretch; }
+            .c-link { justify-content: center; }
+        }
+        @media (max-width: 480px) {
+            .hg-stats { grid-template-columns: 1fr; } /* Coluna única no celular pequeno */
+        }
+    </style>
+</head>
+<body>
+
+<nav id="navbar">
+    <a href="#hero" class="nav-logo">Janiel<span>.</span></a>
+    
+    <ul class="nav-links">
+        <li class="dropdown">
+            <a href="#sobre">A Lógica <i class="fa-solid fa-chevron-down" style="font-size: 0.6rem;"></i></a>
+            <div class="dropdown-menu">
+                <a href="#sobre">Quem Sou</a>
+                <a href="#diferenciais">Diferenciais</a>
+                <a href="#habilidades">Skills & Tools</a>
+            </div>
+        </li>
+        <li><a href="#projetos">A Prática</a></li>
+        <li><a href="narrativas.html">Narrativas</a></li>
+        
+        <li><a href="estudio.html">Cases de SEO</a></li>
+        
+        <li><a href="#contato">Contato</a></li>
+    </ul>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+    <a href="#sobre" onclick="closeMobile()">Sobre</a>
+    <a href="#diferenciais" onclick="closeMobile()" class="mobile-sub-link">Diferenciais</a>
+    <a href="#habilidades" onclick="closeMobile()" class="mobile-sub-link">Skills</a>
+    <a href="#projetos" onclick="closeMobile()">A Prática</a>
+    <a href="narrativas.html">Narrativas</a>
+    
+    <a href="estudio.html">Cases de SEO</a>
+    
+    <a href="#contato" onclick="closeMobile()">Contato</a>
+</div>
+
+<section id="hero">
+    <div class="hero-bg-color"></div>
+    
+    <div class="star-accent star-1">✦</div>
+    <div class="star-accent star-2">✦</div>
+    <div class="star-accent star-3">✦</div>
+
+    <div class="hero-typography-front">
+        <div class="huge-text solid">PORTFOLIO</div>
+    </div>
+
+    <div class="hero-image-box">
+        <img src="Bruno-05.jpg" alt="Janiel Bruno">
+    </div>
+
+    <div class="hero-typography-back">
+        <div class="huge-text outline hidden-first">PORTFOLIO</div>
+        <div class="huge-text outline">PORTFOLIO</div>
+        <div class="huge-text outline">PORTFOLIO</div>
+        <div class="huge-text outline">PORTFOLIO</div>
+        <div class="huge-text outline">PORTFOLIO</div>
+    </div>
+
+    <div class="hero-glass-panel">
+        <span class="hg-pretitle">SEO Sênior · Estrategista de Conteúdo B2B</span>
+        <h1 class="hg-title">SEO que vira <em>receita</em>,<br>não só relatório.</h1>
+        <p class="hg-lead">Já gerei <b>mais de 2.800 leads orgânicos por ano</b> para indústrias B2B — conectando estratégia, dados e psicologia do consumidor para transformar busca em contato. Resultados verificados em Google Analytics e Search Console.</p>
+        
+        <div class="hg-cta">
+            <a class="btn-primary" href="#contato">Vamos escalar o seu orgânico &rarr;</a>
+            <a class="btn-secondary" href="#projetos">Ver cases com números</a>
+        </div>
+        
+        <div class="hg-stats">
+            <div class="hg-stat">
+                <span class="hg-stat-num">+2.800</span>
+                <span class="hg-stat-desc">leads orgânicos/ano gerados para o B2B</span>
+            </div>
+            <div class="hg-stat">
+                <span class="hg-stat-num">+360%</span>
+                <span class="hg-stat-desc">de crescimento de tráfego orgânico</span>
+            </div>
+            <div class="hg-stat">
+                <span class="hg-stat-num">2&times;</span>
+                <span class="hg-stat-desc">taxa de conversão (ex.: 9,8% &rarr; 15,2%)</span>
+            </div>
+            <div class="hg-stat">
+                <span class="hg-stat-num">100+</span>
+                <span class="hg-stat-desc">projetos de SEO B2B conduzidos</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="universo">
+    <div class="sec-label">Visão de Mundo</div>
+    <h2>Marketing para gerar valor tanto aquisitivo<br><em>como de marca.</em></h2>
+    
+    <div class="moodboard-grid">
+        <a href="estudio.html" class="mood-item mood-1" style="text-decoration: none; cursor: pointer;">
+            <img src="moda.jpg" alt="Estética e Moda">
+            <span class="mood-caption">Cases de SEO<i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.5rem; margin-left: 5px;"></i></span>
+        </a>
+
+        <a href="narrativas.html" class="mood-item mood-2" style="text-decoration: none; cursor: pointer;">
+            <img src="danca.jpg" alt="Cena de Cinema">
+            <span class="mood-caption">Minha narrativa <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.5rem; margin-left: 5px;"></i></span>
+        </a>
+
+        <a href="narrativas.html#copywriting" class="mood-item mood-3" style="text-decoration: none; cursor: pointer;">
+            <img src="maquina.jpg" alt="Máquina de Escrever">
+            <span class="mood-caption">Jornada como redator de conteúdo<i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.5rem; margin-left: 5px;"></i></span>
+        </a>
+
+        <div class="mood-item mood-4">
+            "Sempre seja uma versão de primeira classe de si mesmo em vez de uma versão de segunda classe de outra pessoa"
+        </div>
+    </div>
+</section>
+
+<section id="sobre">
+    <div class="sobre-grid">
+        <div class="sobre-text">
+            <div class="sec-label">/sobre o autor</div>
+            <h2>Do desenhista ao escritor do escritor ao<em> estrategista de marketing </em></h2>
+            <p>Sou Janiel Bruno, atualmente analista de SEO Pleno com foco em criar estratégias que tragan<strong>performance e ROI</strong>. Minha abordagem une estratégia de conteúdo, arquitetura de informações focada no usuário, SEO Técnico e inteligência de dados para criar crescimento orgânico sustentável.</p>
+            <p>Ao longo de <strong>quatro anos de carreira</strong>, trabalhei com redação e inbound marketing até a responsabilidade estratégica de múltiplos projetos SEO em agência e uma startup — indo de uma SaaS B2B para negócios locais e nacionais.</p>
+            <p>Formado em <strong>Marketing</strong> com pós-graduação em <strong>Neuromarketing</strong>, já publiquei um livro autoral de poemas, escreve narrativas ainda não publicadas, mas sempre amei desenhar como hobby tanto retratos como ilustrações no papel e cróquis.</p>
+        </div>
+        <div class="facts">
+            <div class="fact">
+                <i class="fa-solid fa-graduation-cap fact-icon"></i>
+                <div><div class="fact-title">Formação Acadêmica</div><div class="fact-text">Bacharelado em Marketing + Pós em Neuromarketing + Especialização SEO (2024).</div></div>
+            </div>
+            <div class="fact">
+                <i class="fa-solid fa-award fact-icon"></i>
+                <div><div class="fact-title">Reconhecimento</div><div class="fact-text">Condecorado com Anhembi Morumbi Honors por destaque acadêmico em 2020.</div></div>
+            </div>
+            <div class="fact">
+                <i class="fa-solid fa-earth-americas fact-icon"></i>
+                <div><div class="fact-title">Visão Global</div><div class="fact-text">Inglês avançado. Capacidade de atuar com ferramentas e mercados internacionais.</div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="diferenciais">
+    <div class="sec-label">Framework</div>
+    <h2>Por que <em>eu?</em></h2>
+    
+    <div class="dif-list">
+        <div class="dif-item">
+            <div class="dif-num">01</div>
+            <div class="dif-content">
+                <h3>SEO e GEO guiado por dados</h3>
+                <p>Cada decisão é embasada em GA4, Semrush, Search Console, Screaming Frog e ferramentas disponíveis para o projeto. Análise profunda da concorrência, mercado sem achismos e com foco na conversão.</p>
+            </div>
+        </div>
+        <div class="dif-item">
+            <div class="dif-num">02</div>
+            <div class="dif-content">
+                <h3>Conteúdo de alta conversão</h3>
+                <p>Produzi conteúdos que levou, na época, a startup em que trabalhei à menor taxa de rejeição de seu nicho — fonte: SimilarWeb —, onde só foi possível ao entender a intenção de busca real e o aprofundamento da persona.</p>
+            </div>
+        </div>
+        <div class="dif-item">
+            <div class="dif-num">03</div>
+            <div class="dif-content">
+                <h3>A ponte entre marketing e TI</h3>
+                <p>A comunicação interna é um dos fatores para um bom trabalho e para empresas atingerem o sucesso, portanto, para mim transformar análises complexas em uma linguagem que alinhe desenvolvedores sobre rastreamento, indexaçã, usabilidade e Core Web Vitals, sé imprescindível</p>
+            </div>
+        </div>
+        <div class="dif-item">
+            <div class="dif-num">04</div>
+            <div class="dif-content">
+                <h3>Gestão de portfólio complexo</h3>
+                <p>Capacidade testada de gerenciar múltiplos clientes simultaneamente, adaptando estratégias de SEO para se alinharem às particularidades e KPIs específicos de cada nicho de mercado.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="habilidades">
+    <div class="sec-label">Toolkit</div>
+    <h2>Minhas <em>habilidades</em></h2>
+    
+    <div class="skills-grid">
+        <div class="skill-col">
+            <h3>SEO & Ferramentas</h3>
+            <div class="skill-item"><span class="skill-name">SEO/GEO estratégico & Técnico</span><span class="skill-lvl">Avançado</span></div>
+            <div class="skill-item"><span class="skill-name">Semrush & Search Console</span><span class="skill-lvl">Avançado</span></div>
+            <div class="skill-item"><span class="skill-name">Google Analytics 4</span><span class="skill-lvl">Avançado</span></div>
+            <div class="skill-item"><span class="skill-name">Screaming Frog</span><span class="skill-lvl">Avançado</span></div>
+            <div class="skill-item"><span class="skill-name">SEO local (GMB)</span><span class="skill-lvl">Avançado</span></div>
+        </div>
+        <div class="skill-col">
+            <h3>Conteúdo & Copy</h3>
+            <div class="skill-item"><span class="skill-name">Planejamento editorial</span><span class="skill-lvl">Avançado</span></div>
+            <div class="skill-item"><span class="skill-name">Redação & Storytelling</span><span class="skill-lvl">Avançado</span></div>
+            <div class="skill-item"><span class="skill-name">Inbound marketing</span><span class="skill-lvl">Avançado</span></div>
+            <div class="skill-item"><span class="skill-name">CRO & Landing pages</span><span class="skill-lvl">Avançado</span></div>
+            <div class="skill-item"><span class="skill-name">WordPress & HTML/CSS</span><span class="skill-lvl">Intermediário</span></div>
+        </div>
+    </div>
+</section>
+
+<section id="projetos">
+    <div class="sec-label">Background</div>
+    <h2>A <em>Prática</em></h2>
+    
+    <div class="timeline">
+        <div class="exp">
+            <div class="exp-header">
+                <span class="exp-co">Bloomin</span>
+                <span class="exp-period">Out 2024 – Presente</span>
+            </div>
+            <div class="exp-role">Analista de SEO Pleno</div>
+            <ul class="exp-list">
+                <li><strong>Gestão de portfólio multidisciplinar</strong> — gerenciamento estratégico de múltiplos projetos simultâneos em diversos nichos, adaptando SEO on-page e técnico aos KPIs.</li>
+                <li><strong>Inteligência de mercado</strong> — uso avançado de Semrush e Analytics para identificar lacunas de conteúdo e oportunidades competitivas.</li>
+                <li><strong>Interface técnica com TI</strong> — tradução de diagnósticos do Screaming Frog/GSC em requisitos claros para correção de rastreamento e indexação.</li>
+                <li><strong>Consultoria e retenção</strong> — reuniões estratégicas traduzindo métricas em visão de negócio para clientes.</li>
+            </ul>
+        </div>
+        
+        <div class="exp">
+            <div class="exp-header">
+                <span class="exp-co">Magis5</span>
+                <span class="exp-period">Jun 2022 – Jun 2024</span>
+            </div>
+            <div class="exp-role">Redator de conteúdo & analista SEO Jr.</div>
+            <ul class="exp-list">
+                <li><strong>SEO e performance</strong> — planejamento editorial e otimizações on-page com resultados diretos em tráfego B2B.</li>
+                <li><strong>Redação inbound</strong> — produção de landing pages e artigos focados em intenção de busca, garantindo a menor taxa de rejeição do nicho.</li>
+                <li><strong>Tom e voz</strong> — manutenção do branding verbal em campanhas de email, social media e mídia paga.</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section id="contato">
+    <div class="contato-box">
+        <div class="sec-label" style="justify-content:center;margin-bottom:1.5rem;">Próximos Passos</div>
+        <h2>Vamos <em>escalar</em><br>o seu orgânico?</h2>
+        <p>Se você busca um SEO que une visão estratégica, técnica e que tem sensibilidade para entender seu usuário e persona, me chame para um café.</p>
+        <div class="c-links">
+            <a href="mailto:janielbrunob@gmail.com" class="c-link"><i class="fa-solid fa-envelope"></i> janielbrunob@gmail.com</a>
+            <a href="https://wa.me/5511957783061" target="_blank" class="c-link"><i class="fa-brands fa-whatsapp"></i> (11) 95778-3061</a>
+            <a href="https://www.linkedin.com/in/janielbruno" target="_blank" class="c-link"><i class="fa-brands fa-linkedin-in"></i> LinkedIn</a>
+        </div>
+    </div>
+</section>
+
+<footer>&copy; 2026 Janiel Bruno — Analista de SEO & Estrategista de Conteúdo.</footer>
+
+<script>
+    // Nav background blur on scroll
+    window.addEventListener('scroll', () => {
+        const nav = document.getElementById('navbar');
+        if(window.scrollY > 50) {
+            nav.style.background = 'rgba(7, 15, 32, 0.95)';
+            nav.style.backdropFilter = 'blur(10px)';
+        } else {
+            nav.style.background = 'transparent';
+            nav.style.backdropFilter = 'none';
+        }
+    });
+
+    // Mobile menu
+    const toggle = document.getElementById('navToggle');
+    const menu   = document.getElementById('mobileMenu');
+    toggle.addEventListener('click', () => menu.classList.toggle('open'));
+    function closeMobile() { menu.classList.remove('open'); }
+
+    // Fade-in animations
+    const fadeObs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                e.target.style.opacity = '1';
+                e.target.style.transform = 'translateY(0)';
+                fadeObs.unobserve(e.target);
+            }
+        });
+    }, { threshold: 0.1 });
+    
+    document.querySelectorAll('.dif-item, .exp, .mood-item, .skill-col').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        fadeObs.observe(el);
+    });
+</script>
+</body>
+</html>
